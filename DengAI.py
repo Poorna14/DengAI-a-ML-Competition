@@ -3,9 +3,7 @@ import csv
 import pandas as pd
 import numpy as np
 from sklearn import linear_model
-from sklearn.model_selection import train_test_split
 from sklearn import preprocessing
-from sklearn.metrics import mean_absolute_error
 
 def _main(open_path,save_path,file_name):
 
@@ -62,14 +60,19 @@ for column in test.columns:
         le = preprocessing.LabelEncoder()
         test[column] = le.fit_transform(test[column])        
 
+#defining refgression model
 reg=linear_model.LinearRegression()
+
+#training the model
 reg.fit(df_x,df_y)
-#print(reg.coef_)
+
+#predicting
 y_pred=reg.predict(test)
 
+#printing predictions
 print (y_pred)
 
-#print(mean_absolute_error(df_y,y_pred))
+
 
 
 
